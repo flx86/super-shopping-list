@@ -14,11 +14,11 @@ app.use(cookieParser());
 
 
 // routes
-app.use('/', (req,res) => {
-  res.json({
-    message:'hello World'
-  })
-});
+// app.use('/', (req,res) => {
+//   res.json({
+//     message:'hello World'
+//   })
+// });
 
 if(process.env.NODE_ENV === 'production'){
   // Set static folder
