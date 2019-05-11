@@ -7,18 +7,19 @@ const mongoose = require('mongoose');
 
 var app = express();
 
+// middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Connecting to mongo
+mongoose
+  .connect('mongodb+srv://flx86:flx86@mern-shopping-tyxtj.mongodb.net/super-shopping-list?retryWrites=true', {useNewUrlParser: true , useCreateIndex: true})
+  .then(()=> console.log('MongoDB Connected'))
+  .catch((err)=> console.log(err));
 
-// routes
-// app.use('/', (req,res) => {
-//   res.json({
-//     message:'hello World'
-//   })
-// });
+//routes 
 
 if(process.env.NODE_ENV === 'production'){
   // Set static folder
