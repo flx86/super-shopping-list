@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv/config');
 
 
@@ -10,17 +11,22 @@ var app = express();
 
 // middlewares
 app.use(logger('dev'));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Connecting to mongo
 mongoose
-  .connect(process.env.MONGO_CONNECTION, {useNewUrlParser: true , useCreateIndex: true})
+  .connect('mongodb+srv://flx86:flx86@mern-shopping-tyxtj.mongodb.net/super-shopping-list?retryWrites=true', {useNewUrlParser: true , useCreateIndex: true})
   .then(()=> console.log('MongoDB Connected'))
   .catch((err)=> console.log(err));
 
-//routes 
+// routes
+app.use ('/api/items' , require('./routes/api/items'));
+app.use ('/api/signin' , require('./routes/api/signin'));
+app.use ('/api/login' , require('./routes/api/login'));
+app.use ('/api/user' , require('./routes/api/user'));
 
 if(process.env.NODE_ENV === 'production'){
   // Set static folder
