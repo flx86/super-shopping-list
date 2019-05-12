@@ -9,7 +9,7 @@
 ```
 ## Development
 
-Add  your MONGO_URI and jwt secret, example in .env.sample
+Add  your MONGO_URI and jwt secret in a .env file, example in .env.sample
 
 ```sh
 
